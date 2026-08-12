@@ -1,0 +1,747 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+
+/* ============================================================
+   VIOLAÇÕES WCAG INTENCIONAIS — USO EDUCACIONAL (PALESTRA)
+   ============================================================
+   ❌ outline removido globalmente          → WCAG 2.4.7 (Focus Visible)
+   ❌ contraste insuficiente               → WCAG 1.4.3 (Contrast Minimum)
+   ❌ fontes em px fixo pequeno            → WCAG 1.4.4 (Resize Text)
+   ❌ texto sobre imagem sem sobreposição  → WCAG 1.4.11
+   ❌ cursores customizados em divs clicáveis sem semântica
+   ============================================================ */
+
+/* VIOLAÇÃO #1 — Remove todo indicador de foco do teclado */
+* {
+  outline: none !important;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000000;
+  font-family: 'Rajdhani', sans-serif;
+  color: #3a3a3a; /* VIOLAÇÃO #2 — texto muito escuro sobre fundo preto, contraste ~1.5:1 */
+  overflow-x: hidden;
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png') #050505;
+  border-bottom: 1px solid #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-area {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #ff6600;
+  font-weight: 900;
+}
+
+.logo-sub {
+  font-size: 9px; /* VIOLAÇÃO #3 — texto minúsculo */
+  color: #2a2a2a; /* VIOLAÇÃO #4 — contraste ~1.2:1 sobre fundo preto */
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+/* VIOLAÇÃO #5 — div clicável sem cursor pointer nem role */
+.nav-item {
+  font-size: 11px; /* VIOLAÇÃO — fonte pequena em px fixo */
+  color: #383838; /* VIOLAÇÃO — cinza escuro em fundo preto, contraste ~1.4:1 */
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid #151515;
+  background: #0a0a0a;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  position: relative;
+}
+
+.badge {
+  font-size: 9px;
+  background: #ff6600;
+  color: #cc4400;  /* VIOLAÇÃO — laranja sobre laranja, contraste ~1.1:1 */
+  border-radius: 50%;
+  padding: 1px 5px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  width: 100%;
+}
+
+.hero-overlay {
+  background:
+    url('https://www.transparenttextures.com/patterns/dark-stripes.png'),
+    linear-gradient(135deg, #000 0%, #0a0a0a 50%, #050505 100%);
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ruído visual extra para dificultar leitura */
+.hero-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255,102,0,0.03) 2px,
+    rgba(255,102,0,0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-titulo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  color: #1e1e1e; /* VIOLAÇÃO — quase invisível sobre fundo preto, contraste ~1.1:1 */
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-shadow: 0 0 40px rgba(255,102,0,0.05);
+}
+
+.hero-sub {
+  font-size: 11px; /* VIOLAÇÃO — px fixo pequeno */
+  color: #2d2d2d;  /* VIOLAÇÃO — contraste ~1.2:1 */
+  letter-spacing: 2px;
+  max-width: 400px;
+}
+
+.hero-btn {
+  margin-top: 16px;
+  padding: 10px 32px;
+  background: linear-gradient(90deg, #ff6600, #cc4400);
+  color: #dd5500; /* VIOLAÇÃO — texto laranja sobre fundo laranja, contraste ~1.1:1 */
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border: none;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+/* ===================== DESTAQUES BAR ===================== */
+.destaques-bar {
+  background: #080808;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  display: flex;
+  gap: 40px;
+  padding: 8px 20px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.destaque-item {
+  font-size: 10px; /* VIOLAÇÃO — px fixo pequeno */
+  color: #252525;  /* VIOLAÇÃO — contraste ~1.1:1 */
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+/* ===================== CATEGORIAS ===================== */
+.categorias {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 30px 20px;
+  background: #040404;
+  flex-wrap: wrap;
+}
+
+.categoria-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 16px;
+  background: #080808;
+  border: 1px solid #111;
+  min-width: 120px;
+}
+
+.categoria-card img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  filter: brightness(0.4); /* VIOLAÇÃO — imagens escurecidas sem texto alternativo */
+}
+
+.categoria-card span {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #2a2a2a;  /* VIOLAÇÃO */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===================== TESTEMUNHOS ===================== */
+.testemunhos {
+  padding: 30px 40px;
+  background:
+    url('https://www.transparenttextures.com/patterns/diagonal-striped-brick.png') #020202;
+}
+
+.testemunho-titulo {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.testemunhos-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testemunho-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #060606;
+  border: 1px solid #0f0f0f;
+  padding: 14px;
+  max-width: 260px;
+}
+
+.testemunho-card img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* VIOLAÇÃO — sem alt text no JSX */
+}
+
+.testemunho-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testemunho-nome {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #2e2e2e;  /* VIOLAÇÃO */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.testemunho-texto {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  line-height: 1.4;
+}
+
+/* ===================== LOJA ===================== */
+.loja {
+  padding: 30px 40px;
+  background: #010101;
+  min-height: 70vh;
+}
+
+.loja-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.loja-titulo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px; /* VIOLAÇÃO — pequeno para um título */
+  color: #1e1e1e;  /* VIOLAÇÃO */
+  letter-spacing: 3px;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+}
+
+.filtro, .filtro-ativo {
+  font-size: 10px; /* VIOLAÇÃO */
+  padding: 4px 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.filtro {
+  color: #252525;  /* VIOLAÇÃO */
+  border: 1px solid #111;
+  background: #050505;
+}
+
+.filtro-ativo {
+  color: #883300; /* VIOLAÇÃO — laranja escuro em fundo laranja, contraste ~1.2:1 */
+  border: 1px solid #ff6600;
+  background: #ff6600;
+}
+
+.skins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.skin-card {
+  background: #050505;
+  border: 1px solid #111;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.skin-card:hover {
+  border-color: #ff6600;
+}
+
+.skin-img-wrapper {
+  position: relative;
+  background: #080808;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  min-height: 140px;
+}
+
+.skin-img {
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+  /* VIOLAÇÃO — sem alt text no JSX */
+}
+
+.skin-exterior-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 8px; /* VIOLAÇÃO — texto minúsculo de 8px */
+  color: #1a1a1a; /* VIOLAÇÃO */
+  background: #0d0d0d;
+  padding: 2px 6px;
+  letter-spacing: 1px;
+}
+
+.skin-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skin-nome {
+  font-size: 11px; /* VIOLAÇÃO */
+  color: #2a2a2a;  /* VIOLAÇÃO */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skin-preco {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  color: #ff6600;
+}
+
+.skin-btn-comprar {
+  margin-top: 8px;
+  padding: 8px;
+  background: linear-gradient(90deg, #ff6600, #cc4400);
+  color: #dd5500; /* VIOLAÇÃO — laranja sobre laranja */
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px; /* VIOLAÇÃO — 9px */
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ===================== DETALHE ===================== */
+.detalhe {
+  padding: 30px 40px;
+  background: #010101;
+  min-height: 70vh;
+}
+
+.detalhe-voltar {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+
+.detalhe-conteudo {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.detalhe-img-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.detalhe-img {
+  width: 300px;
+  height: 220px;
+  object-fit: contain;
+  background: #080808;
+  border: 1px solid #111;
+  padding: 20px;
+  /* VIOLAÇÃO — sem alt text */
+}
+
+.detalhe-selos {
+  display: flex;
+  gap: 8px;
+}
+
+.detalhe-selos img {
+  /* VIOLAÇÃO — sem alt text */
+  border: 1px solid #111;
+}
+
+.detalhe-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.detalhe-nome {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  color: #1a1a1a; /* VIOLAÇÃO — título principal quase invisível */
+  font-weight: 700;
+}
+
+.detalhe-exterior {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #222;     /* VIOLAÇÃO */
+}
+
+.detalhe-preco {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #ff6600;
+}
+
+.detalhe-desc {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #202020;  /* VIOLAÇÃO */
+  line-height: 1.5;
+  max-width: 340px;
+}
+
+.detalhe-btn {
+  padding: 12px 24px;
+  font-size: 10px !important;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+/* ===================== CHECKOUT ===================== */
+.checkout {
+  padding: 30px 40px;
+  background: #010101;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.checkout-titulo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px; /* VIOLAÇÃO */
+  color: #1e1e1e;  /* VIOLAÇÃO */
+  letter-spacing: 3px;
+}
+
+.checkout-layout {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.checkout-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 280px;
+}
+
+.checkout-subtitulo {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.checkout-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #060606;
+  border: 1px solid #111;
+  padding: 8px;
+}
+
+.checkout-item-img {
+  width: 60px;
+  height: 45px;
+  object-fit: contain;
+  background: #090909;
+  /* VIOLAÇÃO — sem alt */
+}
+
+.checkout-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checkout-item-nome {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #2a2a2a;  /* VIOLAÇÃO */
+  font-weight: 700;
+}
+
+.checkout-item-preco {
+  font-size: 11px; /* VIOLAÇÃO */
+  color: #ff6600;
+}
+
+/* ===================== FORMULÁRIO ===================== */
+/* VIOLAÇÃO — campos sem <label> associado, apenas placeholder */
+.checkout-form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 300px;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grupo-row {
+  flex-direction: row;
+  gap: 10px;
+}
+
+.form-input {
+  background: #070707;
+  border: 1px solid #151515;
+  color: #2a2a2a;  /* VIOLAÇÃO — texto escuro em fundo quase preto */
+  padding: 8px 10px;
+  font-size: 10px; /* VIOLAÇÃO */
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: #1e1e1e; /* VIOLAÇÃO — placeholder invisível, contraste ~1.1:1 */
+  font-size: 10px;
+}
+
+.form-input:focus {
+  /* VIOLAÇÃO — sem nenhum indicador visual de foco além do outline já removido globalmente */
+  border-color: #1a1a1a;
+}
+
+.form-input-small {
+  width: auto;
+  flex: 1;
+}
+
+.checkout-btn {
+  margin-top: 8px;
+  padding: 12px;
+  background: linear-gradient(90deg, #ff6600, #cc4400);
+  color: #dd5500; /* VIOLAÇÃO */
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px; /* VIOLAÇÃO */
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.carrinho-vazio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.carrinho-vazio span {
+  font-size: 11px;
+  color: #252525; /* VIOLAÇÃO */
+}
+
+.pedido-ok {
+  font-size: 11px;
+  color: #2a2a2a; /* VIOLAÇÃO — mensagem de sucesso quase invisível */
+  background: #060606;
+  border: 1px solid #111;
+  padding: 20px;
+}
+
+/* ===================== SOBRE ===================== */
+.sobre {
+  padding: 30px 40px;
+  background: #010101;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sobre-titulo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px; /* VIOLAÇÃO */
+  color: #1e1e1e;  /* VIOLAÇÃO */
+  letter-spacing: 3px;
+}
+
+.sobre-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sobre-texto span {
+  font-size: 11px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.sobre-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #060606;
+  border: 1px solid #111;
+  padding: 20px 30px;
+  gap: 6px;
+}
+
+.stat-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  color: #ff6600;
+}
+
+.stat-label {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #252525;  /* VIOLAÇÃO */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  display: flex;
+  gap: 40px;
+  padding: 30px 40px;
+  background: #020202;
+  border-top: 1px solid #0d0d0d;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.footer-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  color: #ff6600;
+}
+
+.footer-col > span:not(.footer-logo):not(.footer-titulo-col) {
+  font-size: 9px;  /* VIOLAÇÃO — 9px */
+  color: #1e1e1e;  /* VIOLAÇÃO */
+}
+
+.footer-titulo-col {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #222222;  /* VIOLAÇÃO */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.footer-link {
+  font-size: 10px; /* VIOLAÇÃO */
+  color: #1e1e1e;  /* VIOLAÇÃO */
+  cursor: pointer;
+}
+
+.footer-col img {
+  /* VIOLAÇÃO — sem alt text */
+  margin-top: 4px;
+}
