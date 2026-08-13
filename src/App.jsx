@@ -356,6 +356,14 @@ export default function App() {
           <img src="https://placehold.co/60x30/111/555?text=MC" />
           <img src="https://placehold.co/60x30/111/555?text=PIX" />
         </div>
+        <div className="footer-col footer-col-logo">
+          <img
+            src="/logo/senac-logo.png"
+            className="footer-senac-logo"
+            onClick={() => window.location.href = '?acessivel=1'}
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
       </div>
 
     </div>

@@ -745,3 +745,16 @@ body {
   /* VIOLAÇÃO — sem alt text */
   margin-top: 4px;
 }
+
+.footer-col-logo {
+  margin-left: auto;
+  justify-content: flex-end;
+  align-items: flex-end;
+  opacity: 0.35;
+}
+
+.footer-senac-logo {
+  width: 80px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(1.5);
+}
